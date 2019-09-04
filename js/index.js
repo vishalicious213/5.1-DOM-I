@@ -37,6 +37,95 @@ const siteContent = {
   },
 };
 
+// nav                  DONE
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
+let logo = document.getElementById("logo-img"); // ID doesn't need . or #
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+let navLinks = document.querySelectorAll("nav a")
+// console.log("navLinks",navLinks);
+navLinks.forEach((link, i) => {
+  link.textContent = siteContent["nav"][`nav-item-${i+1}`]
+});
+
+//---------- TASK 3: Add New Content
+navLinks.forEach((link) => (link.style.color = 'green'));
+
+let navBlog = document.createElement("a");
+navBlog.textContent = "Blog";
+let navMenu = document.querySelector("nav");
+navMenu.appendChild(navBlog);
+navBlog.style.color = "green"; // stretch
+
+let navHome = document.createElement("a");
+navHome.textContent = "Home";
+navMenu.prepend(navHome);
+navHome.style.color = "green"; // stretch
+
+
+// cta                  DONE
+let ctaImg = document.getElementById("cta-img");  // make variable & set it to HTML class
+ctaImg.src = siteContent["cta"]["img-src"]; // tell variable source to use nested object data
+
+let ctaText = document.querySelector(".cta-text h1"); // make variable and set it to CSS selector
+ctaText.textContent = siteContent["cta"]["h1"]; // textContent points to CSS cta/h1 data
+
+let ctaButton = document.querySelector(".cta-text button"); // class needs .
+ctaButton.textContent = siteContent["cta"]["button"];
+
+
+// main-content         DONE
+let middleImg = document.getElementById("middle-img"); // make variable & set it to HTML class
+middleImg.src = siteContent["main-content"]["middle-img-src"]; // tell variable source to use nested object data
+
+let mainContentHeadings = document.querySelectorAll(".text-content h4"); // top-content and bottom-content headings
+// console.log("mainContentHeadings",mainContentHeadings);
+
+// let headingArray = ["features-h4", "about-h4", "services-h4", "product-h4", "vision-h4"]; // css content heading keys
+let headingArray = ["features", "about", "services", "product", "vision"];
+
+// console.log("headingArray",headingArray);
+// need to put each headingArray element into a h4 field
+mainContentHeadings.forEach((heading, i) => {
+  // console.log(["main-content"][headingArray[i]]);
+  // console.log(i);
+  // console.log(heading);
+  // console.log(heading, i);
+  // console.log([headingArray]);
+  // console.log([headingArray[i]]);
+
+  // heading.textContent = ["main-content"][headingArray[i]]
+  // heading.textContent = [headingArray[i]];
+  // console.log(heading.textContent);
+
+  // console.log(["main-content"][`${headingArray[i]}-h4`]); // UNDEFINED
+
+  // console.log(siteContent["main-content"][`${headingArray[i]}-h4`]); //siteContent!!!
+  heading.textContent = siteContent["main-content"][`${headingArray[i]}-h4`];
+});
+
+
+let mainContentCopy = document.querySelectorAll(".text-content p"); 
+mainContentCopy.forEach((paragraph, i) => {
+  // console.log(siteContent["main-content"][`${headingArray[i]}-content`]);
+  paragraph.textContent = siteContent["main-content"][`${headingArray[i]}-content`];
+});
+
+
+// contact              DONE
+let contactHeading = document.querySelector(".contact h4");
+contactHeading.textContent = siteContent["contact"]["contact-h4"];
+
+let contactArray = ["address", "phone", "email"];
+// console.log(contactArray);
+//need to put each contactArray element into a <p> in .contact
+let contactInfo = document.querySelectorAll(".contact p") // contactInfo uses all 3 <p>
+contactInfo.forEach((contactDetail, i) => {
+  contactDetail.textContent = siteContent["contact"][`${contactArray[i]}`];
+});
+
+
+// footer               DONE
+let footerText = document.querySelector("footer p");
+footerText.textContent = siteContent["footer"]["copyright"];
+
